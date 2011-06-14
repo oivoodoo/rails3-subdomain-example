@@ -24,20 +24,18 @@ class ApplicationController < ActionController::Base
   end
   
   def current_account
-    unless has_subdomain?
-      @account = Account.first
-    end
+    @account ||= Account.first
     @account
   end
   
   def current_account_name
     name = request.subdomains.first
-    name = (params[:account_name] || "test-1") if test_env?
+    name = (params[:account_name] || "name-1") if test_env?
     name
   end
   
   def has_subdomain?
-    current_account_name.present? and current_account_name != 'www'
+    request.subdomains.first.present? and current_account_name != 'www'
   end
   
   def test_env?

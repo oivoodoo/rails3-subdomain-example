@@ -14,11 +14,13 @@ require 'capybara/session'
 Capybara.default_selector = :css
 
 ActionController::Base.allow_rescue = false
-Cucumber::Rails::World.use_transactional_fixtures = true
+Cucumber::Rails::World.use_transactional_fixtures = false
 
-begin
-  DatabaseCleaner.strategy = :transaction
-rescue NameError
-  raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+if defined?(ActiveRecord::Base)
+  begin
+    require 'database_cleaner'
+    DatabaseCleaner.strategy = :truncation
+  rescue LoadError
+  end
 end
 

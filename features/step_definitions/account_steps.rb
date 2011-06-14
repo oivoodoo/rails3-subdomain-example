@@ -14,9 +14,13 @@ Then /^I should see the following accounts:$/ do |expected_accounts_table|
 end
 
 Given /^I have "([^"]*)" account$/ do |count|
-  count.to_i.times { Account.make }
+  count.to_i.times { |i| Account.make }
 end
 
 Then /^I should see "([^"]*)" account$/ do |count|
-  find("#accounts .account").size.should == count.to_i
+  page.should have_css("#accounts .account", :count => count.to_i)
+end
+
+Then /^show me current url$/ do
+  p current_url.inspect
 end
