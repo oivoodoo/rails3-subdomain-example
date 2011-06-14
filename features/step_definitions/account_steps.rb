@@ -12,3 +12,11 @@ end
 Then /^I should see the following accounts:$/ do |expected_accounts_table|
   expected_accounts_table.diff!(tableish('table tr', 'td,th'))
 end
+
+Given /^I have "([^"]*)" account$/ do |count|
+  count.to_i.times { Account.make }
+end
+
+Then /^I should see "([^"]*)" account$/ do |count|
+  find("#accounts .account").size.should == count.to_i
+end

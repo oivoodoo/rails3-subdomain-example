@@ -5,10 +5,10 @@ describe WelcomeController do
   describe "with account" do
     let(:account) { Account.make }  
     
-    before { controller.should_receive(:current_account).and_return(account) }
+    before { controller.stub!(:current_account).and_return(account) }
     
     context "get index" do
-      before { get :index }  
+      before { get :index }
   
       it { response.should be_success }
     

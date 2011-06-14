@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  include UrlHelper
+  
+  helper :all
+  
   before_filter :check_account_access
   
   def default_url_options(options = nil)
@@ -15,12 +19,12 @@ class ApplicationController < ActionController::Base
   
   def check_account_access
     unless has_subdomain?
-      redirect_to welcome_index_url({:subdomain => current_account.name})
+      redirect_to welcome_url({:subdomain => current_account.name})
     end
   end
   
   def current_account
-    if has_subdomain?
+    unless has_subdomain?
       @account = Account.first
     end
     @account
@@ -28,7 +32,7 @@ class ApplicationController < ActionController::Base
   
   def current_account_name
     name = request.subdomains.first
-    name = (params[:account_name] || "test-1") if 
+    name = (params[:account_name] || "test-1") if test_env?
     name
   end
   

@@ -1,0 +1,2 @@
+%h1 Accounts
+%div#accounts= @accounts.collect{|a| "<div class='account'>#{a.name}</div>"}.join.html_safe
