@@ -55,7 +55,7 @@ Given /^(?:|I )am on (.+)$/ do |page_name|
 end
 
 When /^(?:|I )go to (.+)$/ do |page_name|
-  visit path_to(page_name)
+  visit_page_with page_name
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
