@@ -7,14 +7,6 @@ class ApplicationController < ActionController::Base
   
   before_filter :check_account_access
   
-  def default_url_options(options = nil)
-    if test_env?
-      {:account_name => current_account_name}
-    else
-      {}
-    end
-  end
-  
   protected
   
   def check_account_access
@@ -30,7 +22,7 @@ class ApplicationController < ActionController::Base
   
   def current_account_name
     name = request.subdomains.first
-    name = (params[:account_name] || "name-1") if test_env?
+    name = "name-1" if test_env?
     name
   end
   
@@ -39,6 +31,6 @@ class ApplicationController < ActionController::Base
   end
   
   def test_env?
-    %w(test cucumber).include?(Rails.env)
+    %w(cucumber).include?(Rails.env)
   end
 end

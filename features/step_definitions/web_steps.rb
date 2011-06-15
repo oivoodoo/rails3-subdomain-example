@@ -31,6 +31,15 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+def visit_page_with name
+  if current_url
+    uri = URI.parse(current_url)
+    visit "http://#{uri.host}:#{uri.port}" + path_to(name)
+  else
+    visit path_to(name)
+  end
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }

@@ -1,11 +1,13 @@
-1308037848
+1308136339
 ApplicationController	/home/korsak/projects/subdomain/app/controllers/application_controller.rb	class ApplicationController 
 UrlHelper	/home/korsak/projects/subdomain/app/helpers/url_helper.rb	module UrlHelper
+WithinHelpers	/home/korsak/projects/subdomain/features/step_definitions/web_steps.rb	module WithinHelpers
 check_account_access	/home/korsak/projects/subdomain/app/controllers/application_controller.rb	  def check_account_access
 current_account	/home/korsak/projects/subdomain/app/controllers/application_controller.rb	  def current_account
 current_account_name	/home/korsak/projects/subdomain/app/controllers/application_controller.rb	  def current_account_name
-default_url_options	/home/korsak/projects/subdomain/app/controllers/application_controller.rb	  def default_url_options(options = nil)
 has_subdomain?	/home/korsak/projects/subdomain/app/controllers/application_controller.rb	  def has_subdomain?
 test_env?	/home/korsak/projects/subdomain/app/controllers/application_controller.rb	  def test_env?
 url_for	/home/korsak/projects/subdomain/app/helpers/url_helper.rb	  def url_for(options = nil)
+visit_page_with	/home/korsak/projects/subdomain/features/step_definitions/web_steps.rb	def visit_page_with 
+with_scope	/home/korsak/projects/subdomain/features/step_definitions/web_steps.rb	  def with_scope(locator)
 with_subdomain	/home/korsak/projects/subdomain/app/helpers/url_helper.rb	  def with_subdomain(subdomain)
